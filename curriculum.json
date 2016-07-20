@@ -1,6 +1,7 @@
 {
   "title": "Arduino",
   "text": "Description of arduino course.",
+  "color": "red 600",
   
   "section": {
     "binary-counter": {
