@@ -1,4 +1,7 @@
 {
+  "title": "Arduino",
+  "text": "Description of arduino course.",
+  
   "section": {
     "binary-counter": {
       "title": "Binary Counter",
