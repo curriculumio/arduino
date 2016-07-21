@@ -29,7 +29,7 @@ Wire pin `13` from the Arduino to the power side of the LED. When pin `13` is wr
 
 ![single led](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/binary-counter/ledcircuit.png?raw=true)
 
-Repeat these steps to wire thr`ee more LEDs to pins `10`, `11`, and `12`. At this point the project should match this diagram.
+Repeat these steps to wire three more LEDs to pins `10`, `11`, and `12`. At this point the project should match this diagram.
 
 ![4 leds](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/binary-counter/4ledcircuit.png?raw=true)
 
