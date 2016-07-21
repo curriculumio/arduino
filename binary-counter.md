@@ -1,4 +1,4 @@
-# LED Binary Counter Meh
+# LED Binary Counter
 
 ## Requirements
 ### Knowledge
