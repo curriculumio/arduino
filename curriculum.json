@@ -11,6 +11,10 @@
     "counting-binary": {
       "title": "Counting in Binary",
       "text": "A Lesson on Counting in Binary"
+    },
+    "keyboard-instrument": {
+      "title": "Keyboard Instrument",
+      "text": "Building a Keyboard with Buttons"
     }
   }
 }
