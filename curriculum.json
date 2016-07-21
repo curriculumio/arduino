@@ -6,7 +6,11 @@
   "section": {
     "binary-counter": {
       "title": "Binary Counter",
-      "text": "Introduction to blinking LEDs and programming logic."
+      "text": "Building an LED Binary Counter"
+    },
+    "counting-binary": {
+      "title": "Counting in Binary",
+      "text": "A Lesson on Counting in Binary"
     }
   }
 }
