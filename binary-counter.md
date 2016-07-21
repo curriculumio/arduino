@@ -1,11 +1,11 @@
-#LED Binary Counter
+# LED Binary Counter
 
-##Requirements
-###Knowledge
+## Requirements
+### Knowledge
 1. [Counting in binary](http://www.techlab.education)
 2. [Basic breadboard and circuits](http://www.techlab.education)
 
-###Hardware
+### Hardware
 1. Arduino Uno board or clone
 2.  Programming cable
 3. 4 LEDs
@@ -13,12 +13,12 @@
 5. Jumper cables
 6. Solder-less breadboard
 
-###Software
+### Software
 1. Arduino 1.6.9 or higher
 
 
-##The Build
-###Pin to LED
+## The Build
+### Pin to LED
 Start off by wiring a connection from `GND` to the top of the left blue rail on the breadboard. Use a jumper to connect the from the bottom of the left blue rail to the bottom of the right blue rail. This gives your board common ground.
 
 The LED has two legs: one long, one short. It is important to note as the LED is a diode (LED stands for Light Emitting Diode) and is therefore unidirectional. The longer leg connects to positive voltage and the short leg connects to ground. Install your LED such that the long leg is in a row on the left side of your breadboard and the short leg is in the same row on the right side.
@@ -34,7 +34,7 @@ Repeat these steps to wire thr`ee more LEDs to pins `10`, `11`, and `12`. At thi
 ![4 leds](https://github.com/shawnmurali95/arduino/blob/master/binary-counter/4ledcircuit.png?raw=true)
 
 ## Making the Sketch
-###The Basics
+### The Basics
 Every sketch should include the following code stubs: 
 ```c
 void setup() {
@@ -49,7 +49,9 @@ The `setup()` method runs once when the program initializes and is never called 
 From this common skeleton, there are three different approaches to programming the binary counter. The approaches are outlined below in order of complexity.
 ###Approach 1: Hard-Coded Pattern
 Hard-coding a pattern is conceptually the simplest way to program the binary counter. However, it is tedious to code and is not as extendable as the other methods. 
-####Defining Variables
+
+#### Defining Variables
+
 At the top of the sketch, define four constants to define the pins connected to the LEDs. Also, declare an `int` variable, which will be used as our counter.
 ```c
 #define LED0 10
@@ -59,7 +61,8 @@ At the top of the sketch, define four constants to define the pins connected to 
 
 int i = 0;
 ```
-####Defining Methods
+#### Defining Methods
+
 In `void setup()`, set pins `10` through `13` to `OUTPUT`. Also begin `Serial` at a baud-rate of 9600 for debug purposes.
 ```c
 void setup() {
@@ -333,9 +336,11 @@ void displayBits(byte num){
 	}
 }
 ```
-###Approach 3: Finite State Machine
+### Approach 3: Finite State Machine
+
 A finite state machine works by determining its next state based on its previous state, based on rules applied to state variables. In this method, the binary counter will be programmed as a state machine with 4 state variables (one for the state of each LED).
-####Defining Variables
+
+#### Defining Variables
 At the top of the sketch, define an array to store the pins connected to the LEDs, and another array to store the state in which the LED should be (on or off). `pins` will be an array of type `int` and	`states` will be an array of type `bool` as follows:
 ```c
 int pins[4] = {10, 11, 12, 13};
