@@ -1,8 +1,8 @@
 # Keyboard Instrument
 # Requirements
 ## Knowledge
-1. [Basic Circuitry](curriculum.io/arduino/basic-circuitry)
-2. [LED Lab](curriculum.io/arduino/binary-counter)
+1. [Basic Circuitry](http://curriculum.io/arduino/basic-circuitry)
+2. [LED Lab](http://curriculum.io/arduino/binary-counter)
 
 ## Hardware
 1. Arduino Uno
