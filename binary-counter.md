@@ -2,14 +2,14 @@
 
 ## Requirements
 ### Knowledge
-1. [Counting in binary](http://www.techlab.education)
-2. [Basic breadboard and circuits](http://www.techlab.education)
+1. [Counting in binary](curriculum.io/arduino/counting-binary)
+2. [Basic breadboard and circuits](curriculum.io/arduino/basic-circuitry)
 
 ### Hardware
 1. Arduino Uno board or clone
 2.  Programming cable
 3. 4 LEDs
-4. 4 1k Ohm resistor
+4. 4 1k $\Omega$ resistor
 5. Jumper cables
 6. Solder-less breadboard
 
@@ -47,11 +47,9 @@ void loop() {
 The `setup()` method runs once when the program initializes and is never called again by the Arduino afterwards. The `loop()` method is then called repeatedly until the machine is powered down.
 
 From this common skeleton, there are three different approaches to programming the binary counter. The approaches are outlined below in order of complexity.
-###Approach 1: Hard-Coded Pattern
+### Approach 1: Hard-Coded Pattern
 Hard-coding a pattern is conceptually the simplest way to program the binary counter. However, it is tedious to code and is not as extendable as the other methods. 
-
 #### Defining Variables
-
 At the top of the sketch, define four constants to define the pins connected to the LEDs. Also, declare an `int` variable, which will be used as our counter.
 ```c
 #define LED0 10
@@ -62,7 +60,6 @@ At the top of the sketch, define four constants to define the pins connected to 
 int i = 0;
 ```
 #### Defining Methods
-
 In `void setup()`, set pins `10` through `13` to `OUTPUT`. Also begin `Serial` at a baud-rate of 9600 for debug purposes.
 ```c
 void setup() {
@@ -258,15 +255,15 @@ void displayPattern(int led3, int led2, int led1, int led0) {
 	}
 }
 ```
-###Approach 2: Reading from a Byte
+### Approach 2: Reading from a Byte
 This method takes advantage of the fact that computers store decimal numbers in binary. Using a `byte` to store the number is better in this case than using `int` because the built counter is only 4 bits. Thus, as far as this program is concerned, only the first 4 bits of the `byte` are read.
-####Defining Variables
+#### Defining Variables
 Define an `int` array `pins` to store the indexes of the pins connected to the LEDs. Also define a `byte num` to store the number being displayed.
 ```c
 int pins[4] = {13, 12, 11, 10};
 byte num = 0;
 ```
-####Defining Methods
+#### Defining Methods
 In `void setup()` set the mode of each pin in `pins` to `OUTPUT` using a for-loop. Also begin the `Serial` at the baud-rate `9600` for debugging purposes.
 ```c
 void setup(){
@@ -337,9 +334,7 @@ void displayBits(byte num){
 }
 ```
 ### Approach 3: Finite State Machine
-
 A finite state machine works by determining its next state based on its previous state, based on rules applied to state variables. In this method, the binary counter will be programmed as a state machine with 4 state variables (one for the state of each LED).
-
 #### Defining Variables
 At the top of the sketch, define an array to store the pins connected to the LEDs, and another array to store the state in which the LED should be (on or off). `pins` will be an array of type `int` and	`states` will be an array of type `bool` as follows:
 ```c
@@ -347,7 +342,7 @@ int pins[4] = {10, 11, 12, 13};
 bool states[4] = {false, false, false, false};
 ```
 Using this syntax, the values inside the `{}` are stored in the array. The first line designates pins `10`, `11`, `12`, and `13` as pins with LEDs connected to them. The second line designates the start state of each bit as "off" ($0000_2$).
-####Defining Methods
+#### Defining Methods
 Inside `void setup()`, use a for-loop to designate each pin in `pins` as an `OUTPUT`. Also start the `Serial` to read at the baud-rate `9600`.
 ```c
 void setup() {
