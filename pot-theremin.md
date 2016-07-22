@@ -15,7 +15,7 @@
 1. Arduino 1.6.9 or higher
 
 ## The Build
-Start by wiring `5v` to the power rail on the breadboard and `GND` to the ground rail. Consider this the basic skeleton of most of the projects outlined. 
+Start by wiring `5V` to the power rail on the breadboard and `GND` to the ground rail. Consider this the basic skeleton of most of the projects outlined. 
 
 Break out a line from power to one of the rows on the breadboard. Take a jumper and connect `A0` from the bottom left header on the Arduino to 2 rows below the row used for power. Break out a line from ground to the row 2 below that. Wire the positive terminal of the potentiometer to the power row. Wire the output signal of the potentiometer to the `pin A0` row. Finally, wire the negative terminal of the potentiometer to the ground row. The setup should match the following diagram.
 ![potentiometer connections](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/pot-theremin/potentiometer_to_arduino.png?raw=true)
@@ -39,7 +39,7 @@ Define an `int` constant `SPEAKER` to store which pin the speaker is connected t
 ```
 
 ## Defining Functions
-In `void setup()` set `SPEAKER` as an output. A0 is already defined as an input so that doesn't have to be changed. Again, begin `Serial` at a baud-rate of `9600` for debug purposes.
+In `void setup()`, set `SPEAKER` as an output. A0 is already defined as an input by default, so that doesn't have to be changed. Again, begin `Serial` at a baud-rate of `9600` for debug purposes.
 ```c
 void setup() {
 	Serial.begin(9600);
@@ -47,17 +47,17 @@ void setup() {
 }
 ```
 
-The `void loop()` function makes use of `analogRead()`, so it is important to have a clear understanding of the difference between analog and digital. `digitalRead()` reads two voltage levels `HIGH` and `LOW` with no in-between values. There is some wiggle room, but in accordance with static discipline these should be small. When voltage drops, but not enough to be in a `LOW` state, digital devices will not work properly. `analogRead()`, however, makes full use of the range of voltages present between `HIGH` and `LOW`.
+The `void loop()` function makes use of `analogRead()`, so it is important to have a clear understanding of the difference between analog and digital. `digitalRead()` reads two voltage levels `HIGH` and `LOW` with no in-between values. There is some wiggle room, but in accordance with static discipline these should be small. If voltage drops, but not enough to be in a `LOW` state, digital devices will not work properly. `analogRead()`, however, makes full use of the range of voltages present between `HIGH` and `LOW`.
 
-The potentiometer is a variable resistor. Recalling that a resistor drops the current in a circuit, a potentiometer set to be at full resistance would drop the voltage more than the same potentiometer set to be at minimal resistance. Reading the voltage with `analogRead()` provides a way to detect what position the potentiometer is in. This information can be used to drive an action with the micro-controller. In the case of this project the action will be generating a tone from a speaker.
+The potentiometer is a variable resistor. Recalling that a resistor drops the current in a circuit, a potentiometer set to be at full resistance would drop the voltage more than the same potentiometer set to be at minimal resistance. Reading the voltage with `analogRead()` provides a way to detect what position the potentiometer is in. This information can be used to drive an action with the Arduino. In the case of this project, the action will be generating a tone from a speaker.
 
 The native `tone()` function generates a tone on a pin designated in an `int` argument at the frequency designated in another `int` argument. A higher frequency indicates a higher pitch.
 
-`loop()` will repeatedly read value `POTENTIOMETER` and generate a tone based on those values. Use the native `map()` function to map the potentiometer readings to a more listenable musical interval.  A small delay is also needed to ensure the accuracy of the readings.
+`loop()` will repeatedly read values from the `POTENTIOMETER` pin and generate tones based on those values. Use the native `map()` function to map the potentiometer readings to a more listenable musical interval.  `map(int freq, int oldLow, int oldHigh, int newLow, int newHigh)` takes values in a range (`oldLow` to `oldHigh`) and scales them to a new range (`newLow` to `newHigh`). A small delay is also needed to ensure the accuracy of the readings.
 ```c
 void loop() {
 	int freq = analogRead(POTENTIOMETER);
-	freq = map(freq, 0, 1023, 220, 880);
+	freq = map(freq, 0, 1023, 880, 110);
 	tone(SPEAKER, freq);
 	delay(10);
 }
