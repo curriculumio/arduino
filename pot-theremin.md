@@ -39,7 +39,7 @@ Define an `int` constant `SPEAKER` to store which pin the speaker is connected t
 ```
 
 ## Defining Functions
-In `void setup()`, set `SPEAKER` as an output. A0 is already defined as an input by default, so that doesn't have to be changed. Again, begin `Serial` at a baud-rate of `9600` for debug purposes.
+In `void setup()`, set `SPEAKER` as an output. `A0` is already defined as an input by default, so that doesn't have to be changed. Again, begin `Serial` at a baud-rate of `9600` for debug purposes.
 ```c
 void setup() {
 	Serial.begin(9600);
@@ -49,7 +49,7 @@ void setup() {
 
 The `void loop()` function makes use of `analogRead()`, so it is important to have a clear understanding of the difference between analog and digital. `digitalRead()` reads two voltage levels `HIGH` and `LOW` with no in-between values. There is some wiggle room, but in accordance with static discipline these should be small. If voltage drops, but not enough to be in a `LOW` state, digital devices will not work properly. `analogRead()`, however, makes full use of the range of voltages present between `HIGH` and `LOW`.
 
-The potentiometer is a variable resistor. Recalling that a resistor drops the current in a circuit, a potentiometer set to be at full resistance would drop the voltage more than the same potentiometer set to be at minimal resistance. Reading the voltage with `analogRead()` provides a way to detect what position the potentiometer is in. This information can be used to drive an action with the Arduino. In the case of this project, the action will be generating a tone from a speaker.
+The potentiometer is a variable resistor. Recall that a resistor limits the current in a circuit, so a potentiometer set to be at full resistance would drop the voltage more than the same potentiometer set to be at a minimal resistance. Reading the voltage with `analogRead()` provides a way to detect what position the potentiometer is in. The Arduino uses ADC, or Analog to Digital Conversion, to turn this voltage reading into a value between `0` and `1023`. This information can be used to drive an action with the Arduino. In the case of this project, the action will be generating a tone from a speaker.
 
 The native `tone()` function generates a tone on a pin designated in an `int` argument at the frequency designated in another `int` argument. A higher frequency indicates a higher pitch.
 
