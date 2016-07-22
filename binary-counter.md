@@ -70,7 +70,7 @@ void setup() {
 	pinMode(LED3, OUTPUT);
 }
 ```
-Before finishing the currently empty `void loop()`, define another function `void displayPattern(int led3, int led2, int led1, int led0)`. This function will check each LED, and light it up if its corresponding `led` integer is `1`. Conditional branching will be useful here.
+Before finishing the currently empty `void loop()`, define another function `void displayPattern(int led3, int led2, int led1, int led0)`. This function will light up each LED if its corresponding `led` variable is a `1`. Conditional branching will be useful here.
 ```c
 void displayPattern(int led3, int led2, int led1, int led0) {
 	if (led3 == 1) {
