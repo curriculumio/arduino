@@ -2,8 +2,8 @@
 
 ## Requirements
 ### Knowledge
-1. [Counting in binary](curriculum.io/arduino/counting-binary)
-2. [Basic breadboard and circuits](curriculum.io/arduino/basic-circuitry)
+1. [Counting in binary](http://curriculum.io/arduino/counting-binary)
+2. [Basic breadboard and circuits](http://curriculum.io/arduino/basic-circuitry)
 
 ### Hardware
 1. Arduino Uno board or clone
