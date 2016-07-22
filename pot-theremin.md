@@ -74,7 +74,7 @@ void setup() {
 
 void loop() {
 	int freq = analogRead(POTENTIOMETER);
-	freq = map(freq, 0, 1023, 220, 880);
+	freq = map(freq, 0, 1023, 880, 110);
 	tone(SPEAKER, freq);
 	delay(10);
 }
