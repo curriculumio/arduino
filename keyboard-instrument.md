@@ -90,7 +90,7 @@ The wiring pattern was chosen to minimize the number of overlapping wires. Notic
 
 ## Wiring the Speaker
 
-Install the 8$\Omega$ speaker with the positive lead in one row and the negative lead in another row at the bottom of the board or in a small, separate breadboard. Take a jumper from `pin 8` and wire it to the top of your breadboard on the left side one row down from the other jumpers on the left. Measure out a flat wire to jump this row to the bottom of your breadboard. Either wire it directly to the positive lead of the speaker on the breadboard or use a jumper to connect it to the lead on the small breadboard.
+Install the 8$\Omega$ speaker with the positive lead in one row and the negative lead in another row at the bottom of the board or in a small, separate breadboard. Take a jumper from `pin 8` and wire it to the left side of the top of your breadboard, one row down from the other jumpers on the left. Measure out a flat wire to jump this row to the bottom of your breadboard. Then, wire it either directly to the positive lead of the speaker on the breadboard, or use a jumper to connect it to the lead on the small breadboard.
 
 The setup should match the following diagram if wired to a small breadboard, but should be electrically equivalent if wired on the same board.
 
@@ -98,10 +98,10 @@ The setup should match the following diagram if wired to a small breadboard, but
 
 # Making the Sketch
 
-Start by creating the basic skeleton of the sketch (`void loop()` and `void setup()`). This sketch will make use of the `tone()` function to drive the speaker and the `digitalRead()` function to get values from the buttons. `tone()` takes an `int` argument defining which pin to output the tone onto and another `int` argument defining the frequency of the tone being played. A higher frequency results in a higher pitch. The sketch will also use the mathematical formula for turning musical intervals into frequencies, which will be expanded further in the lesson.
+Start by creating the basic skeleton of the sketch (`void loop()` and `void setup()`). This sketch will make use of the native Arduino `tone()` function to drive the speaker, and the `digitalRead()` function to get values from the buttons. `tone()` takes two parameters: the first is an `int` argument defining which pin to output the tone onto, and the second is another `int` argument defining the frequency of the tone being played. A higher frequency results in a higher pitch. The sketch will also use the mathematical formula for turning musical intervals into frequencies, which will be expanded further in the lesson.
 
 ## Defining Variables
-Define a constant `int` `SPEAKER` to store which pin to which the speaker is connected. Define another `int` constant that stores the starting frequency of the keyboard (use 220 for "A"). Create an `int` array `buttons` to store the pins connected to the buttons.
+Define a constant `int` `SPEAKER` to store the pin that the speaker is connected to. Define another `int` constant that stores the starting frequency of the keyboard (use `220`, which translates to an "A2"). Create an `int` array `buttons` to store the pins connected to the buttons.
 ```c
 #define SPEAKER 8
 #define START_TONE 220
@@ -109,7 +109,7 @@ int buttons[5] = {9,10,11,12,13};
 ```
 ## Defining Functions
 
-In `void setup()` set `SPEAKER` to `OUTPUT` using `pinMode()`. Use a for-loop to set the pins in `buttons` to `INPUT`. Also begin the `Serial` at the baud-rate of `9600` for debug purposes.
+In `void setup()`, use `pinMode()` to set `SPEAKER` to `OUTPUT`. Use a for-loop to set the pins in `buttons` to `INPUT`. Also begin the `Serial` at the baud-rate of `9600` for debug purposes.
 ```c
 void setup() {
 	Serial.begin(9600);
@@ -119,13 +119,13 @@ void setup() {
 	}
 }
 ```
-Before actually playing a tone, make sure your buttons can read values correctly. Inside `void loop()` use `Serial` to print the value of the unimplemented `getKey()` function. `getKey()` will return an `int` which represents the first position in the `buttons` array whose button is depressed.
+Before actually playing a tone, make sure your buttons can read values correctly. Inside `void loop()`, use `Serial` to print the value of the `getKey()` function. `getKey()` does not yet exist, but it will eventually return an `int` which represents the first position in the `buttons` array whose button is depressed.
 ```c
 void loop() {
 	Serial.println(getKey());
 }
 ```
-To implement the `getKey()`function use the native function `digitalRead()` to check the state of each pin in `buttons`. Check each one to see if it is `HIGH` and return the index of that pin. If no pin in `buttons` is high return a $-1$ to indicate that no button is currently pressed.
+To implement the `getKey()`function, use the native function `digitalRead()` to check the state of each pin in `buttons`. Check each pin, and if one is `HIGH`, return the index of that pin. If no pin in `buttons` is high, return a $-1$ to indicate that no button is currently pressed.
 ```c
 int getKey() {
 	for (int i = 0; i < 5; i++) {
@@ -165,15 +165,15 @@ int getKey() {
 	return -1;
 }
 ```
-Test to see if $-1$ is printed out with no buttons depressed and $0$ through $4$ depending on the button being pressed. Once satisfied, continue with developing the sketch.
+Test to make sure that the values are printing properly. It should print a $-1$ if no buttons are depressed, or $0$ through $4$ depending on the button being pressed. Once satisfied, continue with developing the sketch.
 
-Comment out the `Serial.println(getKey());` using `\\` and in its place write `play(getKey())` to play the given key instead of printing it. The next step is to implement the play function.
+Comment out the `Serial.println(getKey());` using `//` and in its place write `play(getKey())` to play the given key instead of printing it. The next step is to implement the `play()` function.
 
-The mathematical formula for getting frequencies based on a start tone and musical interval is called equal tempered tuning. It uses the fact that a note an octave above (or 12 half-steps above) has a frequency that is exactly double the frequency of the note an octave below it. All the notes in between are therefore equally tempered on an exponential scale. The formula described above is $T*2^{H/{12}}$ where $T$ is the starting tone and $H$ is the number of half-steps (or semitones) the desired tone is away from the original tone. 
+The mathematical formula for getting frequencies based on a start tone and musical interval is called equal-tempered tuning. It uses the fact that a note one octave (or 12 half-steps) above has a frequency that is exactly double the frequency of the note an octave below it. All the notes in between are therefore equally tempered on an exponential scale. The formula described above is $T*2^{H/{12}}$, where $T$ is the starting tone (in this program, $T$ is `220`) and $H$ is the number of half-steps (or semitones) away from the starting tone.
 
 Programmatically, raising $2$ to some power uses the native `pow()` function with the argument $2$ and another argument representing the power to which $2$ is raised. For example, the call `pow(2, 3)` yields the result $8$.
 
-The `void play()` function should take an `int` key as an argument and should play a tone based on the value of key. For now assume each key is a half-step away from each other before devising a way to assign each key to a scale position. `play()` should check whether `key` is $-1$ and should call `noTone(SPEAKER)` if it is. If it is not determine an `int note` to store the frequency of the note calculated using the equal tempered tuning formula. Then call `tone(SPEAKER, note)` and add a 10ms delay.
+The `void play()` function should take an `int key` as an argument, and should play a tone based on the value of `key`. For now, assume that each key (represented by the buttons) is a half-step away from its adjacent keys before devising a way to assign each key to, say, a major scale position. `play()` should check whether `key` is $-1$ and should call `noTone(SPEAKER)` if it is. Otherwise, determine an `int note` to store the frequency of the note calculated using the equal-tempered tuning formula. Then call `tone(SPEAKER, note)` and add a 10ms delay.
 ```c
 void play(int key) {
 	if (key == -1) {
@@ -185,7 +185,7 @@ void play(int key) {
 	}
 }
 ```
-A keyboard that only plays 5 half-steps is rather dull. Instead create a function `getStep()` that takes an argument `int key` and returns a scale position in half-steps from the start tone. Use switch-case to implement this. The implementation listed below uses the pentatonic minor scale, but any scale can be implemented.
+A keyboard that only plays 5 half-steps is rather dull. Instead, create a function `getStep()` that takes an argument `int key` and returns a scale position in half-steps from the start tone. Use switch-case to implement this. The implementation listed below uses the pentatonic minor scale, but any scale (major, minor, diminished, Dorian, whatever you want!) can be implemented.
 ```c
 int getStep(int key) {
 	int pos;
@@ -210,7 +210,7 @@ int getStep(int key) {
 }
 ```
 
-The only change left to be made is calculating note inside play using `getStep(key)` instead of `key`. The final sketch should match the following.
+The only change left to be made is to replace `key` in the even-tempered calculation with `getStep(key)`. The final sketch should match the following.
 ```c
 #define SPEAKER 8
 #define START_TONE 220
