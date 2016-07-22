@@ -1,4 +1,5 @@
 # Counting in Binary
+![counting in binary](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/counting-binary/binarycount.gif?raw=true)
 Binary representation may at first seem daunting, but it follows the familiar rules of counting presented in base-10. In order, then, to count in binary, first break down and analyze counting in base-10.
 ## Counting in Base-10
 Counting in base-10 (a.k.a. decimal "normal" counting) is readily accessible to most people as it is the standard used around the world. When working with multiple bases, use a subscript under each number to indicate its base. $10_{10}$ therefore means 10 in base 10.
@@ -31,3 +32,4 @@ A bit is a single digit in binary, and it is the smallest unit of information. I
 ### Counting
 Applying the same algorithm used to count in base-10, counting in binary is actually a very simple process. Just like in decimal, the least significant bit increments until there are no more unique digits to increment to. The difference is that in binary, the only two unique digits are $0$ and $1$. Thus, the least significant bit increments from $0$ to $1$, and then the next least significant bit increments. For example, to count from $0_{10}$ to $3_{10}$ in binary, first $0$ becomes $1$ before resetting back to $0$ and incrementing the next bit, yielding $10$. Then the least significant bit increments again from $10$ to $11$. Using the place-value formula, convert the resulting binary to decimal to check the work.
 $1*10^0+1*10^1 = 1_{10} * 2_{10}^0 + 1_{10}*2_{10}^1=3_{10}$
+![counting in binary](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/counting-binary/binarycount.gif?raw=true)
