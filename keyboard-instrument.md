@@ -210,7 +210,7 @@ int getStep(int key) {
 }
 ```
 
-The only change left to be made is to replace `key` in the even-tempered calculation with `getStep(key)`. The final sketch should match the following.
+The only change left to be made is to replace `key` in the line `int note = START_TONE * pow(2, key / 12.0);` (the even-tempered calculation) with `getStep(key)`. The final sketch should match the following.
 ```c
 #define SPEAKER 8
 #define START_TONE 220
