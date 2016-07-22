@@ -60,7 +60,7 @@ At the top of the sketch, define four constants to define the pins connected to 
 int i = 0;
 ```
 #### Defining functions
-In `void setup()`, set pins `10` through `13` to `OUTPUT`. Also begin `Serial` at a baud-rate of 9600 for debug purposes.
+In `void setup()`, set pins `10` through `13` to `OUTPUT`. Also begin `Serial` at a baud-rate of `9600` for debug purposes.
 ```c
 void setup() {
 	Serial.begin(9600);
@@ -95,7 +95,7 @@ void displayPattern(int led3, int led2, int led1, int led0) {
 	}
 }
 ```
-Now define the `void loop()` body. Depending on the integer `i`, call `displayPattern(int led3, int led2, int led1, int led0)` on the corresponding binary representation of `i`. For example, an `i` value of `3` would yield the call `displayPattern(0,0,1,1);` (recall from the lesson on binary counting that this representation is Big Endian). Then increment `i` by one; `i` must also be reset to `0` when it reaches `16`. Finally, add a one second delay so that our counter will increment once per second. Switch-case will be useful here, but conditional branching can also be used. The switch-case approach is shown below.
+Now define the `void loop()` body. Depending on the integer `i`, call `displayPattern(int led3, int led2, int led1, int led0)` on the corresponding binary representation of `i`. For example, an `i` value of `3` would yield the call `displayPattern(0,0,1,1);`. Then increment `i` by one. `i` must also be reset to `0` when it reaches `16`. Finally, add a one second delay so that our counter will increment once per second. Switch-case will be useful here, but conditional branching can also be used. The switch-case approach is shown below.
 ```c
 void loop() {
 	switch(i) {
@@ -362,15 +362,19 @@ void loop() {
 ```
 Our functions `displayState()` and `changesState()` are `void` functions, which means that they do not return a value. They will called repeatedly because they are inside `void loop()`.
 
-Below `void setup()` and `void loop()`, create the function `void displayState()`. For each state in `states`, output a `HIGH` if the state is true and a `LOW` if the state is false. A for-loop will again prove useful here.
+Below `void setup()` and `void loop()`, create the function `void displayState()`. For each state in `states`, write `HIGH` to the LED if the state is true and a `LOW` if the state is false. A for-loop will again prove useful here.
 ```c
-if (states[i] == true) {
-	digitalWrite(pins[i], HIGH);
-} else {
-	digitalWrite(pins[i], LOW);
+void displayState() {
+	for (int i = 0; i < 4; i++) {
+		if (states[i] == true) {
+			digitalWrite(pins[i], HIGH);
+		} else {
+			digitalWrite(pins[i], LOW);
+		}
+	}
 }
 ```
-The code for change state is a little less straightforward, but follows the simple rules for counting. The algorithm checks each state sequentially.
+The code for change state is a little less straightforward, but follows the simple rules for counting. Each future state is based on its current state, which in turn is based on the previous state. Each state transition applies the algorithm.
 
 If the state is `true`, its next state will also be `true` if any of the less significant bits are in a `false`state. Use nested for-loops to implement this part of the algorithm.
 ```c
