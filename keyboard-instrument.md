@@ -22,13 +22,13 @@
 ## Button
 The first step to building a keyboard is to wire a button on the breadboard. The first implementation will be with jumper cables, and the second implementation will be with flat, clean wiring so that the button is easily accessible when played.
 
-Start by wiring power and ground from the Arduino to the breadboard. This is achieved by wiring a jumper from the left side header on the Arduino `5V` pin to the red rail on the breadboard and wiring the `GND` pin from the same header to the blue rail of the breadboard.
+Start by wiring power and ground from the Arduino to the breadboard. This is achieved by wiring a jumper from the left side header on the Arduino `5V` pin to the red rail on the breadboard, and wiring the `GND` pin from the same header to the blue rail of the breadboard.
 
-The momentary tact switch used may have 2 to 4 pins depending on style, but for this tutorial a 4 pin tact switch will be assumed. Install the button across the center divide of the breadboard with two pins on either side. At this point your board should match the following diagram.
+The momentary tact switch used may have 2 to 4 pins depending on style, but for this tutorial a 4-pin tact switch will be assumed. Install the button across the center divide of the breadboard with two pins on either side. At this point your board should match the following diagram.
 
 ![power, ground, and button](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/simple-button/button.png?raw=true)
 
-Wire a jumper from the power rail to the lower left pin on the button. When the button is pressed it will connect this pin to one of the other pins on the button. To test which pin the tact switch connects to, connect a jumper cable to another pin. Wire the other end of the jumper to the power side of an LED on your breadboard and insert the ground side of the LED in the ground rail. The setup should look as follows.
+Wire a jumper from the power rail to the lower left pin on the button. When the button is pressed, it will connect this pin to one of the two pins on the opposite side. To test which pin it connects to, connect a jumper cable to one of the opposite pins. Wire the other end of the jumper to the power side of an LED on your breadboard, and insert the ground side of the LED in the ground rail. The setup should look as follows.
 
 ![testing pins](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/simple-button/button_with_LED_test.png?raw=true)
 
@@ -36,7 +36,7 @@ Use the LED jumper to find the pin on the button that turns the LED on when the 
 
 Now the button is functional for simple electric applications like turning an LED on and off. However, in order to use it as a digital input to the Arduino for program control, it needs a static reference to ground.
 
-The first knee-jerk reaction to getting a reference to ground would be to wire a jumper from the connecting pin to ground. This gives a reference to ground but has a bigger problem of short circuiting the board when the button is depressed. This is because it gives the electricity direct access to ground without resistance.
+The first knee-jerk reaction to getting a reference to ground would be to wire a jumper from the connecting pin to ground. This gives a reference to ground, but it has a bigger problem of short circuiting the board when the button is depressed. This is because it gives the electricity direct access to ground without any resistance.
 
 To address this problem, instead wire a resistor from the connecting pin to ground. Now take a jumper from the connecting pin and wire it to a digital pin on the Arduino. This gives a static reference to ground when the button is not depressed, but will prevent a short circuit when the button is depressed. 
 
@@ -72,21 +72,21 @@ In order to make the button easily accessible for playing, flat-wiring is necess
 
 Connecting the rails is the first introduction to the flat-wiring technique. Unspool a length of 22 to 24 gauge red wire without cutting it from the spool. Lay it flat against the board from the connected power rail to the unconnected power rail. Leave some overhang in the wire on either side of the rails and carefully mark the part closer to the spool where it will be cut.
 
-After the wire is cut to length, lay it on the breadboard and use the hole spacing to measure three holes in from either side of the wire and mark. Strip the wire from these marks so you have short leads on either side of the wire. Bend these at $90^o$ angles in the same direction. The wire should resemble a long staple. Insert these ends into the board and push the whole thing in at the same time. Repeat for the ground rail with black wire.
+After the wire is cut to length, lay it on the breadboard and use the hole spacing to measure three holes in from either side of the wire and mark. Strip the wire from these marks so you have short leads on either side of the wire. Bend these at $90^o$ angles in the same direction. The wire should resemble a long staple. Insert these ends into the power rails on either side of the breadboard, and push the whole thing in at the same time. Repeat for the ground rail with black wire. (See the first image in the next section for visual reference.)
 
-## Flat-Wiring a Button
+## Flat-wiring a Button
 
 Remove the existing jumpers, other than the main jumpers from power and ground, from the board if not already done. Use the flat-wiring technique to create the shortest possible connection from power to the lower left hand pin of the button using red wire. Cut the legs from a 1k$\Omega$ resistor so that it lies flush with the board when inserted. Place one end in the right side ground rail and the other end into the connected pin of the button found earlier.
 
-Instead of using a jumper to connect the button straight to the Arduino, flat-wire a connection from the pin with the resistor on it to the top of the breadboard. From here all the jumper cables will go to the Arduino, so wire a jumper from the pin at the top of the board. At this point the setup should match the following diagram.
+Instead of using a jumper to connect the button straight to the Arduino, flat-wire a connection from the pin with the resistor on it to the very top of the breadboard. The top three rows of the breadboard will be used as a launching point for jumper cables going to the Arduino. This way, all of the messy wiring will be restricted to a small area. Wire a jumper from the flat-wired button extension at the top of the board to `pin 13` on the Arduino. The setup should now match the following diagram.
 
 ![single button flat-wired](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/button-keyboard/single_button_with_resistor.png?raw=true)
 
-Repeat the steps for the remaining 4 buttons. The following diagram will be helpful to organize the placement of the wires.
+Repeat the steps for the remaining 4 buttons, connecting them to pins `12` through `9` on the Arduino. The following diagram will be helpful to organize the placement of the wires.
 
 ![all buttons flat-wired](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/button-keyboard/all_buttons.png?raw=true)
 
-The wiring pattern was chosen to minimize the number of overlapping wires. Notice that the last two buttons are wired with the resistor to ground going to the top left side of the button.
+The wiring pattern was chosen to minimize the number of overlapping wires. Notice that the last two buttons are wired in the opposite direction as the first three, with the resistor to ground on the left side of the button and the power supply on the right side.
 
 ## Wiring the Speaker
 
