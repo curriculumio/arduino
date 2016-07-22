@@ -15,6 +15,10 @@
     "keyboard-instrument": {
       "title": "Keyboard Instrument",
       "text": "Building a Keyboard with Buttons"
+    },
+    "pot-theremin": {
+      "title": "Potentiometer Theremin",
+      "text": "Building a Theremin with a Potentiometer"
     }
   }
 }
