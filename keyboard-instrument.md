@@ -1,8 +1,8 @@
 # Keyboard Instrument
 # Requirements
 ## Knowledge
-1. [Basic Circuitry](http://curriculum.io/arduino/basic-circuitry)
-2. [LED Lab](http://curriculum.io/arduino/binary-counter)
+1. [Basic Circuitry](curriculum.io/arduino/basic-circuitry)
+2. [LED Lab](curriculum.io/arduino/binary-counter)
 
 ## Hardware
 1. Arduino Uno
@@ -20,17 +20,17 @@
 
 # The Build
 ## Button
-The first step to building a keyboard is to wire up on a button on the breadboard. The first implementation will be with jumper cables, and the second implementation will be with flat, clean wiring so that the button is easily accessible when played.
+The first step to building a keyboard is to wire a button on the breadboard. The first implementation will be with jumper cables, and the second implementation will be with flat, clean wiring so that the button is easily accessible when played.
 
 Start by wiring power and ground from the Arduino to the breadboard. This is achieved by wiring a jumper from the left side header on the Arduino `5V` pin to the red rail on the breadboard and wiring the `GND` pin from the same header to the blue rail of the breadboard.
 
-The momentary tact switch may have 2 to 4 pins depending on style, but for this tutorial a 4 pin tact switch will be assumed. Install the button across the center divide of the breadboard with two pins on either side. At this point your board should match the following diagram.
+The momentary tact switch used may have 2 to 4 pins depending on style, but for this tutorial a 4 pin tact switch will be assumed. Install the button across the center divide of the breadboard with two pins on either side. At this point your board should match the following diagram.
 
-(fritzing here)
+![power, ground, and button](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/simple-button/button.png?raw=true)
 
 Wire a jumper from the power rail to the lower left pin on the button. When the button is pressed it will connect this pin to one of the other pins on the button. To test which pin the tact switch connects to, connect a jumper cable to another pin. Wire the other end of the jumper to the power side of an LED on your breadboard and insert the ground side of the LED in the ground rail. The setup should look as follows.
 
-(fritzing here)
+![testing pins](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/simple-button/button_with_LED_test.png?raw=true)
 
 Use the LED jumper to find the pin on the button that turns the LED on when the button is depressed and turns off otherwise. This is usually diagonally across from the button pin that power is wired to.
 
@@ -43,7 +43,7 @@ To address this problem, instead wire a resistor from the connecting pin to grou
 
 Wire the jumper coming from the connected side to `pin 13` on the right side header of the Arduino. The setup should match the following diagram.
 
-(insert fritzing)
+![completed button](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/simple-button/button_with_resistor.png?raw=true)
 
 Use this sample program to test the button.
 ```c
@@ -68,7 +68,7 @@ After uploading this code to the board, open the Serial by clicking the magnifyi
 
 ## Flat-wiring
 
-In order to make the button easily accessible for playing, flat-wiring is necessary to keep the project from turning into a tangle of wires. Power and ground should also be connected to the unconnected power and ground rails on the other side of the breadboard. 
+In order to make the button easily accessible for playing, flat-wiring is necessary to keep the project from turning into a tangle of wires. Power and ground should also be connected to the unconnected power and ground rails on the other side of the breadboard to allow access from both sides. 
 
 Connecting the rails is the first introduction to the flat-wiring technique. Unspool a length of 22 to 24 gauge red wire without cutting it from the spool. Lay it flat against the board from the connected power rail to the unconnected power rail. Leave some overhang in the wire on either side of the rails and carefully mark the part closer to the spool where it will be cut.
 
