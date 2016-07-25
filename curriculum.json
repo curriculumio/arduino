@@ -21,7 +21,7 @@
       "text": "Building a Theremin with a Potentiometer"
     },
     "outlet-relay": {
-      "title": "Relay Outlet"
+      "title": "Relay Outlet",
       "text": "Building a Relay Controlled Extension cord"
     }
   }
