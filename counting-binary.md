@@ -4,7 +4,7 @@
 
 Binary representation may at first seem daunting, but it follows the familiar rules of counting presented in base-10. In order, then, to count in binary, first break down and analyze counting in base-10.
 ## Counting in Base-10
-Counting in base-10 (a.k.a. decimal "normal" counting) is readily accessible to most people as it is the standard used around the world. When working with multiple bases, use a subscript under each number to indicate its base. $10_{10}$ therefore means 10 in base 10.
+Counting in base-10 (a.k.a. decimal "normal" counting) is readily accessible to most people as it is the standard used around the world. When working with multiple bases, use a subscript under each number to indicate its base. $10_{10}$ therefore means 10 in base-10.
  For clarity's sake, all equations in this section will assume base-10 unless specified with a subscript.
 ### Definitions and Vocabulary
 In order to analyze this counting system, a few terms have to be clearly defined: digit, place-value, order, and significance.
@@ -20,7 +20,7 @@ Significance is the relative size of each place-value. The most significant digi
 
 With these definitions, an algorithm for counting can be described in base-10 and can be extended to all other bases.
 ### Counting
-Counting works by incrementing the least significant digit until it can no longer increment (runs out of unique digits). Only then can the next least significant bit be incremented. In base-10, $0$ increments through $1$, $2$, and so on until $9$. Only then does the next least significant digit increment, giving us $10$. Then, starting again with the least significant digit, $10$ increments through $11$, $12$, and so on up to $19$, before the next least significant digit increments again, yielding $20$. This idea is universal, and thus applies to base systems with more than ten digits (e.g., base-16) as well as those with less (e.g., base-2).
+Counting works by incrementing the least significant digit until it can no longer increment (runs out of unique digits). Only then can the next least significant, the next highest place-value, bit be incremented. In base-10, $0$ increments through $1$, $2$, and so on until $9$. Only then does the next least significant digit increment, giving us $10$. Then, starting again with the least significant digit, $10$ increments through $11$, $12$, and so on up to $19$, before the next least significant digit increments again, yielding $20$. This idea is universal, and thus applies to base systems with more than ten digits (e.g., base-16) as well as those with less (e.g., base-2).
 
 ![counting 0 to 20](https://github.com/curriculumio/curriculumio.github.io/blob/master/image/arduino/counting-binary/counter.gif?raw=true)
 
@@ -28,7 +28,7 @@ This image shows the implementation of the algorithm to count from $0$ to $20$. 
 ## Counting in Base-2
 In this section, all numbers are base-2 unless otherwise specified. Counting in base-2 uses the same algorithm described above for counting in base-10. But before jumping into that, more vocabulary terms must be defined for talking about base-2.
 ### Definition and Vocabulary
-Binary is the common name for base-2. Binary only has 2 unique digits: $0$ and $1$. This means that the biggest digit is always 1 less than the base. Binary can be represented with the subscript 2 as in $0110_2$.
+Binary is the common name for base-2. Binary only has 2 unique digits: $0$ and $1$. This follows the rule that the biggest digit is always 1 less than the base. Binary can be represented with the subscript 2 as in $0110_2$.
 
 A bit is a single digit in binary, and it is the smallest unit of information. Information can be interpreted as anything, but binary refers specifically to the numerical interpretation.
 ### Counting
