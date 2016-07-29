@@ -2,15 +2,14 @@
   "title": "Arduino",
   "text": "Description of arduino course.",
   "color": "red-600",
-  
+
   "section": {
     "binary-counter": {
       "title": "Binary Counter",
-      "text": "Building an LED Binary Counter"
-    },
-    "counting-binary": {
-      "title": "Counting in Binary",
-      "text": "A Lesson on Counting in Binary"
+      "text": "Building an LED Binary Counter",
+      "next": {
+          "arduino": ["keyboard-instrument"]
+      }
     },
     "keyboard-instrument": {
       "title": "Keyboard Instrument",
