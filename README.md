@@ -5,7 +5,7 @@
 <meta name="text" content="Learn how to create your ideas with digital electronics.">
 <meta name="done" content="true">
 <meta name="lessons" content="arduino">
-<meta name="topic" content="hardware">
+<meta name="topic" content="making">
 
 ---
 
